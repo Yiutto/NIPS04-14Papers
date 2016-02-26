@@ -1,0 +1,37 @@
+The matlab file contains the following variables: 
+1)words:   cell array with list of words (17447 words).
+                        
+2)docs_names:    cell array names of documents (3084 docs).
+                 format of names is NIPSYYYY-paper_id (e.g. 'NIPS2004-2543.txt').
+
+3)authors_names:    cell array with authors names(4639 authors).
+                    format of name is 'A. Linares-Barranco'.
+
+4)docs_authors:    n_docs  x  n_authors sparse binary matrix.(3084 x 4639)
+                   has "1" for each author of a document.
+
+
+5)docs_words:    n_docs  x  n_words count matrix.(3084 x 17447)
+
+
+6)authors_words:   words from each document were assigned to each of theauthors, 
+                   after dividing by the number of authors of that document. 
+	           Each doc count was first normalized to a sum of 1. to correct for document length variability.	
+		   Unnormalized counts can be obtained using docs_words and docs_authors;
+
+    In order to facilitate interpretation,or example: how much is authors_words(i,j)?
+    Assumed authors_i writes 3 docs.Where
+    docs_1 contains 1 word_j（the doc contains 1000 words，1 authors）
+    docs_2 contains 2 word_j（the doc contains 2000 words，2 authors）
+    docs_3 contains 3 word_j（the doc contains 3000 words，3 authors）
+    by the following:
+               authors_words(i,j)=(1/1000/1）+ (2/2000/2) + (3/3000/3) ;
+
+    意思就是说，要想求authors_words(i,j)，先找到编号为i的author写了多少篇doc，
+    再从这些doc中找到编号为j的word的个数，然后一一除以相应的doc中所有的word数
+    和所有的author数，最后将它们的结果相加起来即可。
+
+
+For all document, publication year can be extracted from the name of
+ the document. 
+For documents published in 2004-2014.
